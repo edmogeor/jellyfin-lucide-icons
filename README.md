@@ -7,12 +7,12 @@ Use Lucide icons in Jellyfin without JavaScript. This stylesheet replaces suppor
 Add this to Jellyfin custom CSS:
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/edmogeor/jellyfin-lucide-icons@bb2857c/dist/jellyfin-lucide-icons.css");
+@import url("https://cdn.jsdelivr.net/gh/edmogeor/jellyfin-lucide-icons@main/dist/jellyfin-lucide-icons.css");
 ```
 
 Open **Dashboard > General > Branding > Custom CSS**, paste the import, and save. In each user's display settings, leave **Disable custom CSS** off.
 
-Put this import after your theme imports, but before normal CSS rules. Use a pinned commit URL. jsDelivr can keep an old `@main` stylesheet after a repository update.
+Put this import after your theme imports, but before normal CSS rules.
 
 ## Supported Targets
 
