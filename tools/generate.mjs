@@ -3,6 +3,7 @@ import { join, relative } from 'node:path';
 
 const root = process.cwd();
 const sourceRoot = process.env.JELLYFIN_WEB_SOURCE ?? join(root, 'reference/jellyfin-web/src');
+const stringsRoot = join(root, 'reference/jellyfin-web-v12/src/strings');
 const iconRoot = join(root, 'node_modules/lucide-static/icons');
 const outputRoot = process.env.OUTPUT_ROOT ?? join(root, 'dist');
 const indexFile = process.env.INDEX_FILE ?? join(root, 'ICON_INDEX.md');
@@ -88,7 +89,9 @@ const mediaBarMappings = [
 
 const mediaBarMaterialMappings = [
     ['#slides-container .pause-button .material-icons', 'pause'],
-    ['#slides-container.slideshow-paused .pause-button .material-icons', 'play']
+    ['#slides-container.slideshow-paused .pause-button .material-icons', 'play'],
+    [localizedMuteSelector('Unmute'), 'volume-x'],
+    [localizedMuteSelector('Mute'), 'volume-2']
 ];
 
 function filesIn(directory) {
@@ -96,6 +99,19 @@ function filesIn(directory) {
         const path = join(directory, entry.name);
         return entry.isDirectory() ? filesIn(path) : path;
     });
+}
+
+function localizedMuteSelector(key) {
+    const labels = new Set([key]);
+    if (existsSync(stringsRoot)) {
+        for (const file of readdirSync(stringsRoot).filter((file) => file.endsWith('.json'))) {
+            const label = JSON.parse(readFileSync(join(stringsRoot, file), 'utf8'))[key];
+            if (label) labels.add(label);
+        }
+    }
+    return [...labels]
+        .map((label) => `#slides-container .mute-button[aria-label=${JSON.stringify(label)}] .material-icons`)
+        .join(', ');
 }
 
 function addIcon(icons, name, file) {
