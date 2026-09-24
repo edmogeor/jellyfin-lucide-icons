@@ -1,34 +1,45 @@
 # Jellyfin Lucide Icons
 
-`dist/jellyfin-lucide-icons.css` replaces Jellyfin Web's mapped Material Icons with an embedded Lucide compatibility font. Paste its contents into **Dashboard, General, Custom CSS**, then refresh every Jellyfin client.
+Use Lucide icons in Jellyfin without JavaScript. This stylesheet replaces supported Material icons with Lucide SVG masks.
 
-The compatibility font preserves Material's code points and ligatures, so it also applies to dynamically inserted icon text from third-party Web plugins. Icons without a mapping keep their original Material glyph.
+## Install
 
-When using ElegantFin, put its `@import` before this generated stylesheet. The generated rules also replace ElegantFin's media-track glyphs and the Jellyfin 12 shim's remote-play and episode-preview pseudo-icons.
+Add this to Jellyfin custom CSS:
 
-## Compatibility
+```css
+@import url("https://cdn.jsdelivr.net/gh/edmogeor/jellyfin-lucide-icons@bb2857c/dist/jellyfin-lucide-icons.css");
+```
 
-Verified against Jellyfin Web `v12.1` and the current upstream snapshot. It does not depend on a Jellyfin API, only on the `.material-icons.<name>` markup Jellyfin Web uses. Future major releases remain compatible while they retain that markup; regenerate and review `ICON_INDEX.md` when upgrading past the audited version.
+Open **Dashboard > General > Branding > Custom CSS**, paste the import, and save. In each user's display settings, leave **Disable custom CSS** off.
 
-## Generate
+Put this import after your theme imports, but before normal CSS rules. Use a pinned commit URL. jsDelivr can keep an old `@main` stylesheet after a repository update.
+
+## Supported Targets
+
+- Jellyfin Web current upstream and 12.1
+- ElegantFin
+- ElegantFin for Jellyfin 12
+- Jellyfin Enhanced
+- Intro Skipper
+- SeerrFin, including its Discover tab controls
+- Media Bar Enhanced
+
+The stylesheet covers normal Material icon classes, MUI SVG icons, and known theme or plugin icon selectors. Unknown icons keep their original appearance.
+
+## Limits
+
+This is CSS only. It cannot select an icon by its text content. Plugins need a class, attribute, pseudo-element, or other stable selector for an exact replacement.
+
+## Maintain
+
+Generated files are committed in `dist/`. The ignored `reference/` folders are source snapshots used to audit icon targets.
 
 ```sh
 npm install
 python3 -m venv .venv
 .venv/bin/pip install -r requirements.txt
-git clone --depth 1 https://github.com/jellyfin/jellyfin-web.git reference/jellyfin-web
 npm run generate
 npm run check
 ```
 
-Run `npm run update-references` to fast-forward the moving upstream source snapshots and regenerate the artifacts. `reference/jellyfin-web-v12` is deliberately pinned to the `v12.1` release tag for compatibility verification.
-
-`reference/jellyfin-web` is intentionally ignored. It is the audited upstream source snapshot. The generated `ICON_INDEX.md` records every statically discoverable icon reference and its Lucide mapping.
-
-`reference/elegantfin`, `reference/elegantfin-jf12`, `reference/jellyfin-enhanced`, `reference/intro-skipper`, and `reference/seerrfin` are ignored audit inputs. GitHub Actions clones them only while refreshing generated artifacts.
-
-## Limits
-
-Jellyfin's supported server-plugin API can add configuration pages, but cannot globally load a stylesheet or script into Jellyfin Web. Custom CSS is the supported global injection point, so this project does not include a server plugin that would only affect its own settings page.
-
-The CSS maps known Material class names. A third-party plugin using an unknown icon continues using its original Material icon until that name is added to `tools/generate.mjs`.
+Run the **Refresh icon references** GitHub Actions workflow to clone the supported sources, regenerate the files, and commit changes. After publishing, update the commit in the install URL.
