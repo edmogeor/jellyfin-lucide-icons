@@ -74,7 +74,8 @@ const seerrFinMappings = [
     ['a[href="#/home?seerrfinTab=discover"] .material-icons', 'compass'],
     ['a[href="#/home?seerrfinTab=requests"] .material-icons', 'download'],
     ['a[href="#/home?seerrfinTab=letterboxd"] .material-icons', 'bookmark'],
-    ['.seerrfin-discover-requests .material-icons', 'download']
+    ['.seerrfin-discover-requests .material-icons', 'download'],
+    ['.seerrfin-discover-card .cardText-secondary .material-icons', 'star']
 ];
 
 const syncPlayMappings = [
