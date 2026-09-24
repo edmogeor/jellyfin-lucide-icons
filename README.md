@@ -21,7 +21,7 @@ Put this import after your theme imports, but before normal CSS rules.
 - ElegantFin for Jellyfin 12
 - Jellyfin Enhanced
 - Intro Skipper
-- SeerrFin, including its Discover tab controls
+- SeerrFin
 - Media Bar Enhanced
 
 The stylesheet covers normal Material icon classes, MUI SVG icons, and known theme or plugin icon selectors. Unknown icons keep their original appearance.
