@@ -98,6 +98,39 @@ const alignmentOverrides = [
     '.cardIndicators .material-icons.check, .cardOverlayButton .material-icons.check'
 ];
 
+const targetMappings = [
+    ['.bookOsd .material-icons.arrow_circle_left', 'circle-arrow-left'],
+    ['.bookOsd .material-icons.arrow_circle_right', 'circle-arrow-right'],
+    ['.bookOsd .material-icons.import_contacts', 'book-open'],
+    ['.bookOsd .material-icons.devices_fold', 'file-text'],
+    ['#slides-container .trailer-button .material-icons', 'clapperboard'],
+    ['#slides-container .left-arrow .material-icons', 'chevron-left'],
+    ['#slides-container .right-arrow .material-icons', 'chevron-right'],
+    ['#video-modal-overlay .modal-close-button .material-icons', 'x'],
+    ['.seerrfin-request-play-btn .material-icons', 'play'],
+    ['.seerrfin-request-modal-btn .material-icons', 'download'],
+    ['.seerrfin-requests-back .material-icons', 'arrow-left'],
+    ['.seerrfin-letterboxd-select-indicator .material-icons', 'check'],
+    ['.je-userreview-icon, .je-avg-user-rating-chip .starIcon', 'heart-handshake'],
+    ['.je-people-age-deceased .je-people-age-icon', 'calendar-x'],
+    ['.je-people-age-current .je-people-age-icon', 'cake'],
+    ['.je-people-age-release .je-people-age-icon', 'clapperboard'],
+    ['.je-people-place-icon', 'map-pin'],
+    ['.je-awards-star', 'sparkles'],
+    ['.je-calendar-status-icon.je-status-watchlist', 'bookmark'],
+    ['.je-calendar-status-icon.je-status-watched', 'eye'],
+    ['.je-calendar-play-btn .material-icons', 'play'],
+    ['.je-calendar-mode-btn[data-mode="list"] .material-icons', 'list'],
+    ['.je-calendar-mode-btn[data-mode="backdrop"] .material-icons', 'image'],
+    ['.je-calendar-mode-btn[data-mode="cards"] .material-icons', 'grid-3x3'],
+    ['.je-calendar-sidebar-toggle-icon', 'chevron-down']
+];
+
+const pseudoTargetMappings = [
+    ['.support-fold summary::before', 'chevron-right'],
+    ['.support-fold[open] > summary::before', 'chevron-down']
+];
+
 function filesIn(directory) {
     return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
         const path = join(directory, entry.name);
@@ -198,6 +231,12 @@ function buildCss(auditResult) {
     }
     for (const [selector, lucide] of mediaBarMaterialMappings) {
         rules.push(`${selector} {\n  display: inline-block;\n  width: 1em;\n  height: 1em;\n  overflow: hidden;\n  font-family: inherit;\n  line-height: 1;\n  text-indent: -9999px;\n  vertical-align: -0.125em;\n  background-color: currentColor !important;\n  -webkit-mask: url("${svgDataUrl(lucide)}") center / 1em 1em no-repeat !important;\n  mask: url("${svgDataUrl(lucide)}") center / 1em 1em no-repeat !important;\n}\n\n${selector}::before {\n  content: none;\n}`);
+    }
+    for (const [selector, lucide] of targetMappings) {
+        rules.push(`${selector} {\n  display: inline-block;\n  width: 1em;\n  height: 1em;\n  overflow: hidden;\n  font-family: inherit;\n  line-height: 1;\n  text-indent: -9999px;\n  vertical-align: -0.125em;\n  background-color: currentColor !important;\n  -webkit-mask: url("${svgDataUrl(lucide)}") center / 1em 1em no-repeat !important;\n  mask: url("${svgDataUrl(lucide)}") center / 1em 1em no-repeat !important;\n}\n\n${selector}::before {\n  content: none;\n}`);
+    }
+    for (const [selector, lucide] of pseudoTargetMappings) {
+        rules.push(`${selector} {\n  content: "";\n  display: inline-block;\n  width: 14px;\n  height: 14px;\n  vertical-align: -0.125em;\n  background-color: currentColor !important;\n  -webkit-mask: url("${svgDataUrl(lucide)}") center / contain no-repeat !important;\n  mask: url("${svgDataUrl(lucide)}") center / contain no-repeat !important;\n}`);
     }
     rules.push(`${alignmentOverrides.join(',\n')} {\n  -webkit-mask-position: calc(50% - 0.5px) calc(50% + 0.5px) !important;\n  mask-position: calc(50% - 0.5px) calc(50% + 0.5px) !important;\n}`);
     for (const [selector, lucide, , color = '#d1d5db'] of elegantFinMappings) {

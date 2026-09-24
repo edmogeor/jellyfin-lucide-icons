@@ -31,4 +31,8 @@ if (!css.includes('#slides-container .play-button::before') || !css.includes('#s
     throw new Error('Media Bar Enhanced or SeerrFin icon replacements are missing.');
 }
 
+if (!css.includes('.bookOsd .material-icons.arrow_circle_left') || !css.includes('.je-calendar-status-icon.je-status-watched') || !css.includes('.support-fold[open] > summary::before')) {
+    throw new Error('Audited plugin icon replacements are missing.');
+}
+
 console.log('Generated CSS and icon index passed basic checks.');
