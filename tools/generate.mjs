@@ -67,6 +67,14 @@ const elegantFinMappings = [
     ['#popupPreviewButton::before', 'clapperboard', 'Episode preview']
 ];
 
+const seerrFinMappings = [
+    ['a[data-seerrfin-runtime-nav="movies"] .material-icons', 'clapperboard'],
+    ['a[data-seerrfin-runtime-nav="tv"] .material-icons', 'tv'],
+    ['a[data-seerrfin-runtime-nav="discover"] .material-icons', 'compass'],
+    ['a[data-seerrfin-runtime-nav="requests"] .material-icons', 'download'],
+    ['a[data-seerrfin-runtime-nav="letterboxd"] .material-icons', 'bookmark']
+];
+
 function filesIn(directory) {
     return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
         const path = join(directory, entry.name);
@@ -142,6 +150,9 @@ function buildCss(auditResult) {
         if (!lucide) continue;
         const selector = `svg[data-testid="${mui}Icon"]`;
         rules.push(`${selector} {\n  background-color: currentColor;\n  -webkit-mask: url("${svgDataUrl(lucide)}") center / contain no-repeat !important;\n  mask: url("${svgDataUrl(lucide)}") center / contain no-repeat !important;\n}\n\n${selector} > * {\n  display: none;\n}`);
+    }
+    for (const [selector, lucide] of seerrFinMappings) {
+        rules.push(`${selector} {\n  display: inline-block;\n  width: 1em;\n  height: 1em;\n  overflow: hidden;\n  font-family: inherit;\n  line-height: 1;\n  text-indent: -9999px;\n  vertical-align: -0.125em;\n  background-color: currentColor;\n  -webkit-mask: url("${svgDataUrl(lucide)}") center / contain no-repeat !important;\n  mask: url("${svgDataUrl(lucide)}") center / contain no-repeat !important;\n}\n\n${selector}::before {\n  content: none;\n}`);
     }
     for (const [selector, lucide] of elegantFinMappings) {
         if (!existsSync(join(iconRoot, `${lucide}.svg`))) throw new Error(`Missing Lucide icon: ${lucide}`);
