@@ -29,6 +29,7 @@ def main():
     mappings = json.loads(MAPPINGS.read_text())
     codepoints = material_codepoints()
     font = TTFont(MATERIAL_FONT)
+    font.recalcTimestamp = False
     cmap = font.getBestCmap()
     glyph_order = font.getGlyphOrder()
     documents = []
