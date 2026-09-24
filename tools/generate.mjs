@@ -78,7 +78,8 @@ const seerrFinMappings = [
 ];
 
 const syncPlayMappings = [
-    ['button[aria-controls="app-sync-play-menu"] svg[data-testid="GroupsIcon"]', 'user-group']
+    ['button[aria-controls="app-sync-play-menu"] svg[data-testid="GroupsIcon"]', 'user-group'],
+    ['a[href="#/quickconnect"] svg[data-testid="PhonelinkLockIcon"]', 'qr-code']
 ];
 
 const mediaBarMappings = [
