@@ -34,6 +34,7 @@ jobs:
           git clone --depth 1 https://github.com/n00bcodr/Jellyfin-Enhanced.git reference/jellyfin-enhanced
           git clone --depth 1 --branch 12.0 https://github.com/intro-skipper/intro-skipper.git reference/intro-skipper
           git clone --depth 1 https://github.com/edmogeor/SeerrFin.git reference/seerrfin
+          git clone --depth 1 https://github.com/CodeDevMLH/jellyfin-plugin-media-bar-enhanced.git reference/media-bar-enhanced
 
       - run: npm run generate
       - run: npm run check

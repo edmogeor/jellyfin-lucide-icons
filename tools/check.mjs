@@ -27,4 +27,8 @@ if (!css.includes('.ts-search-icon') || !css.includes('.tab-warning-icon')) {
     throw new Error('Intro Skipper icon replacements are missing.');
 }
 
+if (!css.includes('#slides-container .play-button::before') || !css.includes('.seerrfin-discover-requests .material-icons')) {
+    throw new Error('Media Bar Enhanced or SeerrFin icon replacements are missing.');
+}
+
 console.log('Generated CSS and icon index passed basic checks.');

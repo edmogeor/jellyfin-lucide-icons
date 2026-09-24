@@ -72,11 +72,18 @@ const seerrFinMappings = [
     ['a[href="#/home?seerrfinTab=tv"] .material-icons', 'tv'],
     ['a[href="#/home?seerrfinTab=discover"] .material-icons', 'compass'],
     ['a[href="#/home?seerrfinTab=requests"] .material-icons', 'download'],
-    ['a[href="#/home?seerrfinTab=letterboxd"] .material-icons', 'bookmark']
+    ['a[href="#/home?seerrfinTab=letterboxd"] .material-icons', 'bookmark'],
+    ['.seerrfin-discover-requests .material-icons', 'download']
 ];
 
 const syncPlayMappings = [
     ['button[aria-controls="app-sync-play-menu"] svg[data-testid="GroupsIcon"]', 'user-group']
+];
+
+const mediaBarMappings = [
+    ['#slides-container .detail-button::before', 'info'],
+    ['#slides-container .play-button::before', 'play'],
+    ['#slides-container .favorite-button::before', 'heart']
 ];
 
 function filesIn(directory) {
@@ -160,6 +167,9 @@ function buildCss(auditResult) {
     }
     for (const [selector, lucide] of seerrFinMappings) {
         rules.push(`${selector} {\n  display: inline-block;\n  width: 1em;\n  height: 1em;\n  overflow: hidden;\n  font-family: inherit;\n  line-height: 1;\n  text-indent: -9999px;\n  vertical-align: -0.125em;\n  background-color: currentColor !important;\n  -webkit-mask: url("${svgDataUrl(lucide)}") center / 1em 1em no-repeat !important;\n  mask: url("${svgDataUrl(lucide)}") center / 1em 1em no-repeat !important;\n}\n\n${selector}::before {\n  content: none;\n}`);
+    }
+    for (const [selector, lucide] of mediaBarMappings) {
+        rules.push(`${selector} {\n  content: "";\n  display: inline-block;\n  width: 1em;\n  height: 1em;\n  background-color: currentColor !important;\n  -webkit-mask: url("${svgDataUrl(lucide)}") center / contain no-repeat !important;\n  mask: url("${svgDataUrl(lucide)}") center / contain no-repeat !important;\n}`);
     }
     for (const [selector, lucide, , color = '#d1d5db'] of elegantFinMappings) {
         if (!existsSync(join(iconRoot, `${lucide}.svg`))) throw new Error(`Missing Lucide icon: ${lucide}`);

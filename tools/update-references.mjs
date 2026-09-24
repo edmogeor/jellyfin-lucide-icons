@@ -9,7 +9,8 @@ const references = [
     'reference/elegantfin-jf12',
     'reference/jellyfin-enhanced',
     'reference/intro-skipper',
-    'reference/seerrfin'
+    'reference/seerrfin',
+    'reference/media-bar-enhanced'
 ];
 
 for (const reference of references) {
