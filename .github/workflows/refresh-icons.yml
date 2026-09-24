@@ -48,3 +48,6 @@ jobs:
           git add dist/jellyfin-lucide-icons.css dist/jellyfin-lucide-icons.woff2 dist/material-to-lucide.json ICON_INDEX.md
           git commit -m "chore: refresh icon references"
           git push
+          for file in dist/jellyfin-lucide-icons.css dist/jellyfin-lucide-icons.woff2 dist/material-to-lucide.json ICON_INDEX.md; do
+            curl --fail --retry 3 --retry-delay 2 --silent --show-error "https://purge.jsdelivr.net/gh/edmogeor/jellyfin-lucide-icons@main/$file"
+          done
