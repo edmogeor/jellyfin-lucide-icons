@@ -94,6 +94,10 @@ const mediaBarMaterialMappings = [
     [localizedMuteSelector('Mute'), 'volume-2']
 ];
 
+const alignmentOverrides = [
+    '.cardIndicators .material-icons.check, .cardOverlayButton .material-icons.check'
+];
+
 function filesIn(directory) {
     return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
         const path = join(directory, entry.name);
@@ -195,6 +199,7 @@ function buildCss(auditResult) {
     for (const [selector, lucide] of mediaBarMaterialMappings) {
         rules.push(`${selector} {\n  display: inline-block;\n  width: 1em;\n  height: 1em;\n  overflow: hidden;\n  font-family: inherit;\n  line-height: 1;\n  text-indent: -9999px;\n  vertical-align: -0.125em;\n  background-color: currentColor !important;\n  -webkit-mask: url("${svgDataUrl(lucide)}") center / 1em 1em no-repeat !important;\n  mask: url("${svgDataUrl(lucide)}") center / 1em 1em no-repeat !important;\n}\n\n${selector}::before {\n  content: none;\n}`);
     }
+    rules.push(`${alignmentOverrides.join(',\n')} {\n  -webkit-mask-position: calc(50% - 0.5px) calc(50% + 0.5px) !important;\n  mask-position: calc(50% - 0.5px) calc(50% + 0.5px) !important;\n}`);
     for (const [selector, lucide, , color = '#d1d5db'] of elegantFinMappings) {
         if (!existsSync(join(iconRoot, `${lucide}.svg`))) throw new Error(`Missing Lucide icon: ${lucide}`);
         const pseudo = selector.endsWith('::before');

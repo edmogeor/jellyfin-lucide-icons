@@ -4442,6 +4442,11 @@ a[href="#/home?seerrfinTab=letterboxd"] .material-icons::before {
   content: none;
 }
 
+.cardIndicators .material-icons.check, .cardOverlayButton .material-icons.check {
+  -webkit-mask-position: calc(50% - 0.5px) calc(50% + 0.5px) !important;
+  mask-position: calc(50% - 0.5px) calc(50% + 0.5px) !important;
+}
+
 .selectVideoContainer.trackSelectionFieldContainer > label {
   background-image: none !important;
   background-color: #d1d5db !important;
