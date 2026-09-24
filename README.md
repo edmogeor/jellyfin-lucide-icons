@@ -32,8 +32,6 @@ This is CSS only. It cannot select an icon by its text content. Plugins need a c
 
 ## Maintain
 
-Generated files are committed in `dist/`. The ignored `reference/` folders are source snapshots used to audit icon targets.
-
 ```sh
 npm install
 python3 -m venv .venv
