@@ -33,3 +33,7 @@ This is CSS only. It cannot select an icon by its text content. Plugins need a c
 ## Credits
 
 Icons by [Lucide](https://lucide.dev). See [NOTICE](NOTICE).
+
+## Support
+
+<a href="https://www.buymeacoffee.com/edmogeor" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important; width: 217px !important;"></a>
