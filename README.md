@@ -29,3 +29,7 @@ The stylesheet covers normal Material icon classes, MUI SVG icons, and known the
 ## Limits
 
 This is CSS only. It cannot select an icon by its text content. Plugins need a class, attribute, pseudo-element, or other stable selector for an exact replacement.
+
+## Credits
+
+Icons by [Lucide](https://lucide.dev). See [NOTICE](NOTICE).
