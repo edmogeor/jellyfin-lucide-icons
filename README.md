@@ -29,15 +29,3 @@ The stylesheet covers normal Material icon classes, MUI SVG icons, and known the
 ## Limits
 
 This is CSS only. It cannot select an icon by its text content. Plugins need a class, attribute, pseudo-element, or other stable selector for an exact replacement.
-
-## Maintain
-
-```sh
-npm install
-python3 -m venv .venv
-.venv/bin/pip install -r requirements.txt
-npm run generate
-npm run check
-```
-
-Run the **Refresh icon references** GitHub Actions workflow to clone the supported sources, regenerate the files, and commit changes. After publishing, update the commit in the install URL.
