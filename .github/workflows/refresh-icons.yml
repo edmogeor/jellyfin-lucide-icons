@@ -1,0 +1,50 @@
+name: Refresh icon references
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+
+      - run: npm ci
+      - run: python -m pip install -r requirements.txt
+
+      - name: Fetch upstream references
+        run: |
+          git clone --depth 1 https://github.com/jellyfin/jellyfin-web.git reference/jellyfin-web
+          git clone --depth 1 https://github.com/jellyfin/jellyfin.git reference/jellyfin-server
+          git clone --depth 1 https://github.com/lscambo13/ElegantFin.git reference/elegantfin
+          git clone --depth 1 https://github.com/mihaif7/elegantfin-jf12.git reference/elegantfin-jf12
+          git clone --depth 1 --branch v12.1 https://github.com/jellyfin/jellyfin-web.git reference/jellyfin-web-v12
+          git clone --depth 1 https://github.com/n00bcodr/Jellyfin-Enhanced.git reference/jellyfin-enhanced
+          git clone --depth 1 --branch 12.0 https://github.com/intro-skipper/intro-skipper.git reference/intro-skipper
+          git clone --depth 1 https://github.com/edmogeor/SeerrFin.git reference/seerrfin
+
+      - run: npm run generate
+      - run: npm run check
+
+      - name: Commit refreshed artifacts
+        run: |
+          if git diff --quiet -- dist/jellyfin-lucide-icons.css dist/jellyfin-lucide-icons.woff2 dist/material-to-lucide.json ICON_INDEX.md; then
+            exit 0
+          fi
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add dist/jellyfin-lucide-icons.css dist/jellyfin-lucide-icons.woff2 dist/material-to-lucide.json ICON_INDEX.md
+          git commit -m "chore: refresh icon references"
+          git push
