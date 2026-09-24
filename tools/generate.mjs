@@ -68,11 +68,11 @@ const elegantFinMappings = [
 ];
 
 const seerrFinMappings = [
-    ['a[data-seerrfin-menu-nav="movies"] .material-icons', 'clapperboard'],
-    ['a[data-seerrfin-menu-nav="tv"] .material-icons', 'tv'],
-    ['a[data-seerrfin-menu-nav="discover"] .material-icons', 'compass'],
-    ['a[data-seerrfin-menu-nav="requests"] .material-icons', 'download'],
-    ['a[data-seerrfin-menu-nav="letterboxd"] .material-icons', 'bookmark']
+    ['a[href="#/home?seerrfinTab=movies"] .material-icons', 'clapperboard'],
+    ['a[href="#/home?seerrfinTab=tv"] .material-icons', 'tv'],
+    ['a[href="#/home?seerrfinTab=discover"] .material-icons', 'compass'],
+    ['a[href="#/home?seerrfinTab=requests"] .material-icons', 'download'],
+    ['a[href="#/home?seerrfinTab=letterboxd"] .material-icons', 'bookmark']
 ];
 
 function filesIn(directory) {
