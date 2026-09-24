@@ -62,8 +62,8 @@ const elegantFinMappings = [
     ['.selectAudioContainer.trackSelectionFieldContainer > label', 'audio-lines', 'Audio track'],
     ['.selectSubtitlesContainer.trackSelectionFieldContainer > label', 'captions', 'Subtitle track'],
     ['.selectSourceContainer.trackSelectionFieldContainer > label', 'file-video', 'Media source'],
-    ['[aria-controls="app-remote-play-menu"]::before', 'cast', 'Remote play'],
-    ['[aria-controls="app-remote-play-active-menu"] .MuiButton-startIcon::before', 'cast', 'Active remote play'],
+    ['[aria-controls="app-remote-play-menu"]::before', 'cast', 'Remote play', 'currentColor'],
+    ['[aria-controls="app-remote-play-active-menu"] .MuiButton-startIcon::before', 'cast', 'Active remote play', 'currentColor'],
     ['#popupPreviewButton::before', 'clapperboard', 'Episode preview']
 ];
 
@@ -161,10 +161,10 @@ function buildCss(auditResult) {
     for (const [selector, lucide] of seerrFinMappings) {
         rules.push(`${selector} {\n  display: inline-block;\n  width: 1em;\n  height: 1em;\n  overflow: hidden;\n  font-family: inherit;\n  line-height: 1;\n  text-indent: -9999px;\n  vertical-align: -0.125em;\n  background-color: currentColor !important;\n  -webkit-mask: url("${svgDataUrl(lucide)}") center / 1em 1em no-repeat !important;\n  mask: url("${svgDataUrl(lucide)}") center / 1em 1em no-repeat !important;\n}\n\n${selector}::before {\n  content: none;\n}`);
     }
-    for (const [selector, lucide] of elegantFinMappings) {
+    for (const [selector, lucide, , color = '#d1d5db'] of elegantFinMappings) {
         if (!existsSync(join(iconRoot, `${lucide}.svg`))) throw new Error(`Missing Lucide icon: ${lucide}`);
         const pseudo = selector.endsWith('::before');
-        rules.push(`${selector} {\n  ${pseudo ? 'content: "";\n  display: inline-block;\n  width: 1em;\n  height: 1em;\n  ' : ''}background-image: none !important;\n  background-color: #d1d5db;\n  -webkit-mask: url("${svgDataUrl(lucide)}") center / contain no-repeat !important;\n  mask: url("${svgDataUrl(lucide)}") center / contain no-repeat !important;\n}`);
+        rules.push(`${selector} {\n  ${pseudo ? 'content: "";\n  display: inline-block;\n  width: 1em;\n  height: 1em;\n  ' : ''}background-image: none !important;\n  background-color: ${color} !important;\n  -webkit-mask: url("${svgDataUrl(lucide)}") center / contain no-repeat !important;\n  mask: url("${svgDataUrl(lucide)}") center / contain no-repeat !important;\n}`);
     }
     for (const [selector, lucide] of [['.ts-search-icon', 'search'], ['.tab-warning-icon', 'triangle-alert']]) {
         rules.push(`${selector} {\n  display: inline-block;\n  width: 1em;\n  height: 1em;\n  overflow: hidden;\n  font-size: 0;\n  background-color: currentColor !important;\n  -webkit-mask: url("${svgDataUrl(lucide)}") center / contain no-repeat !important;\n  mask: url("${svgDataUrl(lucide)}") center / contain no-repeat !important;\n}`);
