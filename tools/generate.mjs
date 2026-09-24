@@ -17,7 +17,7 @@ const mappings = {
     clear: 'x', clear_all: 'list-x', close: 'x', closed_caption: 'captions', content_copy: 'copy',
     dashboard: 'layout-dashboard', delete: 'trash-2', devices_other: 'monitor-smartphone', domino_mask: 'venetian-mask', drag_handle: 'grip-vertical', dvr: 'tv',
     edit: 'pencil', error: 'circle-alert', exit_to_app: 'log-out', expand_less: 'chevron-up', expand_more: 'chevron-down',
-    event_busy: 'calendar-x', explore: 'compass', family_restroom: 'users-round', fast_rewind: 'rewind', favorite: 'heart', fiber_manual_record: 'circle', fiber_smart_record: 'radio', file_download: 'download',
+    event_busy: 'calendar-x', explore: 'compass', family_restroom: 'users-round', fast_rewind: 'rewind', favorite: 'heart', fiber_smart_record: 'radio', file_download: 'download',
     filter_alt: 'funnel', folder: 'folder', fullscreen: 'maximize', fullscreen_exit: 'minimize', forward_30: 'forward', get_app: 'download', groups: 'users',
     home: 'house', image: 'image', info: 'info', info_outline: 'circle-help', keyboard: 'keyboard',
     keyboard_arrow_down: 'chevron-down', keyboard_arrow_left: 'chevron-left', keyboard_arrow_right: 'chevron-right', keyboard_arrow_up: 'chevron-up', keyboard_return: 'corner-down-left',
@@ -53,7 +53,7 @@ const muiMappings = {
 
 const ignoredClasses = new Set([
     'material-icons', 'aria-hidden', 'cardImageIcon', 'cardOverlayButtonIcon', 'checkboxIcon', 'checkboxIcon-checked',
-    'checkboxIcon-unchecked', 'emby-collapse-expandIcon', 'indicatorIcon', 'listItemIcon', 'listItemIcon-transparent',
+    'checkboxIcon-unchecked', 'emby-collapse-expandIcon', 'fiber_manual_record', 'indicatorIcon', 'listItemIcon', 'listItemIcon-transparent',
     'listViewDragHandle', 'metadataSidebarIcon', 'navMenuOptionIcon', 'searchfields-icon', 'selectArrow',
     'slideshowButtonIcon', 'timerIndicator', 'xlargePaperIconButton', 'hide', 'icon', 'undefined'
 ]);

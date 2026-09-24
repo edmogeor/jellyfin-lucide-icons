@@ -47,7 +47,6 @@ Generated from `reference/jellyfin-web/src` by `tools/generate.mjs`. Counts cove
 | `fast_forward` | `fast-forward` | 1 | 1 |
 | `fast_rewind` | `rewind` | 1 | 1 |
 | `favorite` | `heart` | 8 | 7 |
-| `fiber_manual_record` | `circle` | 9 | 7 |
 | `fiber_smart_record` | `radio` | 10 | 4 |
 | `file_download` | `download` | 6 | 4 |
 | `filter_alt` | `funnel` | 10 | 6 |
